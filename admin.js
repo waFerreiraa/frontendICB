@@ -1,3 +1,7 @@
+const backendUrl = window.location.hostname.includes("localhost")
+  ? "http://localhost:3000"
+  : "https://backendicb-production.up.railway.app";
+
 // Formulário de culto com upload de imagem
 const formCulto = document.getElementById('form-culto');
 formCulto.addEventListener('submit', async (e) => {
@@ -5,7 +9,7 @@ formCulto.addEventListener('submit', async (e) => {
   const formData = new FormData(formCulto);
 
   try {
-    const res = await fetch('http://localhost:3000/cultos', {
+    const res = await fetch(`${backendUrl}/cultos`, {
       method: 'POST',
       body: formData
     });
@@ -41,7 +45,7 @@ formEvento.addEventListener('submit', async (e) => {
   }
 
   try {
-    const res = await fetch('http://localhost:3000/agenda', {
+    const res = await fetch(`${backendUrl}/agenda`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dados)
@@ -65,18 +69,17 @@ formEvento.addEventListener('submit', async (e) => {
 // Função para carregar e exibir eventos
 async function carregarEventos() {
   try {
-    const res = await fetch('http://localhost:3000/agenda');
+    const res = await fetch(`${backendUrl}/agenda`);
     const eventos = await res.json();
 
     let container = document.querySelector('.event-list');
     if (!container) {
-      // Se não existir container, cria um e adiciona ao body
       container = document.createElement('div');
       container.classList.add('event-list');
       document.body.appendChild(container);
     }
 
-    container.innerHTML = ''; // limpa a lista
+    container.innerHTML = '';
 
     if (eventos.length === 0) {
       container.innerHTML = '<p>Nenhum evento cadastrado.</p>';
@@ -87,7 +90,6 @@ async function carregarEventos() {
       const article = document.createElement('article');
       article.classList.add('event');
 
-      // Pega dia e mês da data do evento
       const data = new Date(evento.data_evento);
       const day = data.getDate().toString().padStart(2, '0');
       const month = data.toLocaleString('pt-BR', { month: 'short' }).toUpperCase();
@@ -108,19 +110,18 @@ async function carregarEventos() {
       container.appendChild(article);
     });
 
-    // Adiciona eventos de clique para os botões de excluir
     document.querySelectorAll('.btn-delete').forEach(botao => {
       botao.addEventListener('click', async (e) => {
         const id = e.target.getAttribute('data-id');
         if (confirm('Tem certeza que deseja excluir este evento?')) {
           try {
-            const res = await fetch(`http://localhost:3000/agenda/${id}`, {
+            const res = await fetch(`${backendUrl}/agenda/${id}`, {
               method: 'DELETE'
             });
             const json = await res.json();
             if (json.status === 'Evento deletado com sucesso') {
               alert('Evento excluído!');
-              carregarEventos(); // atualiza lista
+              carregarEventos();
             } else {
               alert(json.erro || 'Erro ao excluir evento.');
             }
