@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Painel Administrativo - Cultos e Agenda</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <h1>Painel Administrativo</h1>
+
+  <div class="form-container">
+    <!-- Formulário do Culto -->
+    <form id="form-culto" enctype="multipart/form-data">
+      <h2>Atualizar Palavra do Culto</h2>
+
+      <label for="titulo-culto">Título do Culto:</label>
+      <input type="text" id="titulo-culto" name="titulo" required />
+
+      <label for="imagem-culto">Imagem do Pregador:</label>
+      <input type="file" id="imagem-culto" name="imagem" accept="image/*" required />
+
+      <button type="submit">Publicar Palavra</button>
+    </form>
+
+    <!-- Formulário do Evento -->
+    <form id="evento-form">
+      <h2>Adicionar Evento na Agenda</h2>
+
+      <label for="titulo-evento">Título:</label>
+      <input type="text" id="titulo-evento" name="titulo" required />
+
+      <label for="data-evento">Data:</label>
+      <input type="date" id="data-evento" name="data_evento" required />
+
+      <label for="horario-evento">Horário:</label>
+      <input type="time" id="horario-evento" name="horario" required />
+
+      <label for="local-evento">Local:</label>
+      <input type="text" id="local-evento" name="local" required />
+
+      <button type="submit">Cadastrar Evento</button>
+    </form>
+  </div>
+
+  <!-- Aqui a lista dos eventos aparecerá -->
+  <section>
+    <h2>Eventos Cadastrados</h2>
+    <div class="event-list"></div>
+  </section>
+
+  <script src="admin.js"></script>
+</body>
+</html>

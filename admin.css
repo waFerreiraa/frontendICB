@@ -1,0 +1,217 @@
+/* admin.css */
+
+/* Reset básico e fonte */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f7fa;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Título centralizado */
+h1 {
+  text-align: center;
+  color: #004aad;
+  font-weight: 700;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+/* Container dos formulários centralizado e com espaçamento */
+.form-container {
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Cada form tem margem para separar */
+form {
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+/* Título dos formulários */
+form h2 {
+  color: #004aad;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+/* Labels estilizados */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Inputs e selects com largura total e padding */
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1.5px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+/* Foco nos inputs */
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="file"]:focus {
+  outline: none;
+  border-color: #004aad;
+}
+
+/* Botões bonitos e centralizados */
+button {
+  display: block;
+  width: 100%;
+  background-color: #004aad;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 12px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #003380;
+}
+
+/* Estilo para a lista de eventos */
+.event {
+  position: relative;
+  background-color: #ffffff;
+  padding: 40px 40px 25px 130px; /* Aumentei o padding-left pra dar espaço para a data */
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 74, 173, 0.12);
+  font-size: 1.1rem;
+
+  display: flex;
+  align-items: center; /* centraliza verticalmente o conteúdo */
+  gap: 20px; /* espaço entre data e conteúdo */
+}
+
+.event-date {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #004aad;
+  color: white;
+  padding: 11px 9px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 70px;
+  user-select: none;
+  font-weight: 700;
+  z-index: 10;
+}
+
+.event-date .day {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.event-date .month {
+  font-size: 1.2rem;
+  letter-spacing: 1.5px;
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+.event-info {
+  flex-grow: 1;
+  text-align: center;
+}
+
+
+
+.event-info h2 {
+  margin:  0 8px 0;
+  color: #004aad;
+  font-size: 25px;
+}
+
+.event-info .time,
+.event-info .location {
+  margin: 2px 0;
+  color: #555;
+  font-weight: 500;
+}
+
+.btn-delete {
+  background-color: #e03e3e;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  margin-left: 20px;
+  white-space: nowrap;
+}
+
+.btn-delete:hover {
+  background-color: #b73030;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  form h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+
+  .event {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-delete {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+}

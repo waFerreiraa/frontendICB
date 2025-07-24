@@ -1,0 +1,103 @@
+.agenda-page {
+  max-width: 900px;
+  margin: 20px auto 40px;
+  padding: 0 20px;
+}
+
+.agenda-page h1 {
+  font-size: 2.8rem;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #004aad;
+  font-weight: 700;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.event {
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.event:hover {
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.event-date {
+  background-color: #004aad;
+  color: white;
+  padding: 20px 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 180px;
+  font-weight: 700;
+  user-select: none;
+}
+
+.event-date .day {
+  font-size: 2.8rem;
+  line-height: 1;
+}
+
+.event-date .month {
+  font-size: 1rem;
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+}
+
+.event-info {
+  padding: 20px 25px;
+  flex: 1;
+}
+
+.event-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.event-info .time {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.event-info .location {
+  font-size: 1rem;
+  color: #777;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .event {
+    flex-direction: column;
+  }
+
+  .event-date {
+    min-width: auto;
+    padding: 15px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .event-date .day {
+    font-size: 2.2rem;
+  }
+
+  .event-info {
+    padding: 15px;
+  }
+}

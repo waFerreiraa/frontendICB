@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="IYYDtFDS9h1kW7Xm6nIOi6taDuO7nd_IFogMEmHwuWw" />
+  <meta name="description" content="Acompanhe a programação, eventos e informações da Casa da Benção Ressaca." />
+  <meta name="keywords" content="Casa da Benção, Igreja, Culto, Ressaca, Eventos, Programação, Igreja Evangélica" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Casa da Benção Ressaca" />
+  <meta property="og:title" content="Casa da Benção Ressaca" />
+  <meta property="og:description" content="Acompanhe a programação, eventos e informações da Casa da Benção Ressaca." />
+  <meta property="og:url" content="https://casadabencao.netlify.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="URL_DA_IMAGEM_DO_SITE_SE_HOUVER" />
+  <title>Casa Da Benção | Ressaca</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="img/ChatGPT Image 26 de mai. de 2025, 13_30_46.png" type="image/x-icon" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html"><img 
+        src="img/ChatGPT Image 26 de mai. de 2025, 13_30_46.png"
+        alt="Logo"
+      /></a>
+      <span>
+        <h3>CASA DA BENÇÃO</h3>
+        <h1>RESSACA</h1>
+      </span>
+    </div>
+    <nav>
+      <ul>
+        <li> 
+          <a href="">SOBRE ▾</a>
+          <ul class="submenu">
+            <li><a href="#">Nossa História</a></li>
+            <li><a href="#">Pastores</a></li>
+            <li><a href="#">Visão & Missão</a></li>
+          </ul>
+        </li>
+        <li> 
+          <a href="">MENSAGENS ▾</a>
+          <ul class="submenu">
+            <li><a href="cultosPage.html">CULTOS</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="">AGENDA ▾</a>
+          <ul class="submenu">
+            <li><a href="agenda.html">Próximos Eventos</a></li>
+            <li><a href="#">Programação Semanal</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="">SERVIÇOS ▾</a>
+          <ul class="submenu">
+            <li><a href="#">Life Groups</a></li>
+            <li><a href="#">Voluntariado</a></li>
+            <li><a href="#">Aconselhamento</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="">CONTATO ▾</a>
+          <ul class="submenu">
+            <li><a href="https://wa.me/5511989539307" target="_blank" onclick="mensagem()">WHATSAPP</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h4>Palavra recente</h4>
+        <h1 id="titulo-culto">Carregando...</h1>
+        <img id="img-pregador" src="" alt="Imagem do pregador" style="max-width: 300px; margin: 20px 0; display: none; border-radius: 8px;" />
+        <div class="buttons">
+          <a href="#" id="btn-acessar" class="btn primary" target="_blank" style="display: none;">Acessar</a>
+          <a href="cultosPage.html" class="btn secondary">Cultos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Bar -->
+    <div class="info-bar">
+      <div class="campus-info">
+        <div>
+          <strong>Ressaca | Embu das Artes</strong><br />
+          Sexta-Feira: <b>19:15h</b> | Domingo: <b>18:00h</b>
+        </div>
+      </div>
+      <div class="social-media">
+        <a href="#"><img src="img/facebook.png" alt="Facebook" /></a>
+        <a href="https://www.instagram.com/icbressaca/" target="_blank"><img src="../img/instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="../img/youtube.png" alt="YouTube" /></a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="quick-links">
+      <div class="link-card">
+        <span>📍</span>
+        <p><strong>Saiba onde estamos.</strong> Confira os nossos endereços e horários.</p>
+      </div>
+      <div class="link-card">
+        <span>❤️</span>
+        <p><strong>Participe de um dos nossos Life Groups</strong> com a sua família.</p>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h3>Envolva-se</h3>
+      <p>Nesse propósito: <strong>salvar vidas!</strong></p>
+      <ul>
+        <li>❤️ <a href="#">Quero Jesus</a></li>
+        <li>💬 <a href="#">Life Groups</a></li>
+        <li>✋ <a href="#">Voluntários</a></li>
+      </ul>
+    </aside>
+  </div>
+</body>
+</html>

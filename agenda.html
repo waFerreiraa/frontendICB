@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Casa Da Benção | Agenda</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="agenda.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="img/ChatGPT Image 26 de mai. de 2025, 13_30_46.png" alt="Logo" />
+      </a>
+      <span>
+        <h3>CASA DA BENÇÃO</h3>
+        <h1>RESSACA</h1>
+      </span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="">SOBRE ▾</a></li>
+        <li><a href="cultosPage.html">CULTOS</a></li>
+        <li><a href="">AGENDA ▾</a></li>
+        <li><a href="">SERVIÇOS ▾</a></li>
+        <li><a href="contato.html">CONTATO ▾</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="agenda-page">
+    <h1>Agenda</h1>
+
+    <section class="event-list">
+      <!-- Eventos serão inseridos aqui pelo JS -->
+    </section>
+  </main>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch('http://localhost:3000/agenda')
+        .then(res => res.json())
+        .then(events => {
+          const container = document.querySelector('.event-list');
+          container.innerHTML = '';
+
+          const monthNames = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+
+          events.forEach(evento => {
+            const data = new Date(evento.data_evento);
+            const day = String(data.getDate()).padStart(2, '0');
+            const month = monthNames[data.getMonth()];
+
+            const eventHTML = `
+              <article class="event">
+                <div class="event-date">
+                  <span class="day">${day}</span>
+                  <span class="month">${month}</span>
+                </div>
+                <div class="event-info">
+                  <h2>${evento.titulo}</h2>
+                  <p class="time">${evento.horario.substring(0, 5)}</p>
+                  <p class="location">${evento.local}</p>
+                </div>
+              </article>
+            `;
+
+            container.insertAdjacentHTML('beforeend', eventHTML);
+          });
+        })
+        .catch(err => {
+          console.error('Erro ao carregar eventos:', err);
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+/* Seu CSS base - mantive tudo igual */
+
+/* Container principal */
+.container {
+    width: 60%;
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza todo o conteúdo */
+}
+
+/* Categoria */
+.principal {
+    font-size: 28px;
+    color: #444;
+    text-align: left;
+    margin: 40px 0;
+    font-weight: 400;
+}
+
+/* Card do Culto */
+.hero2 {
+    background-color: white;
+    margin: 0 auto 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Título dentro do card */
+.titulo-culto {
+    text-align: left;
+    font-size: 30px;
+    color: #577bb5;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+/* Conteúdo do card lado a lado */
+.hero2-content {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+/* Imagem */
+.image {
+    width: 260px;
+    height: 230px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    object-fit: cover;
+}
+
+/* Texto */
+.text-content {
+    flex: 1;
+}
+
+.descricao {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.info {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.6;
+}
+
+/* =========================== */
+/* MEDIA QUERIES PARA RESPONSIVIDADE */
+/* =========================== */
+
+/* Para tablets e telas médias */
+@media (max-width: 1024px) {
+  .container {
+    width: 80%; /* Aumenta a largura para usar mais espaço disponível */
+  }
+  
+  .titulo-culto {
+    font-size: 26px;
+  }
+
+  .hero2-content {
+    gap: 20px;
+  }
+
+  .image {
+    width: 200px;
+    height: 180px;
+  }
+
+  .descricao {
+    font-size: 15px;
+  }
+}
+
+/* Para smartphones e telas pequenas */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+
+  .principal {
+    font-size: 24px;
+    margin: 30px 0;
+  }
+
+  .titulo-culto {
+    font-size: 22px;
+    text-align: center; /* Centraliza título no mobile */
+  }
+
+  /* Altera para coluna para empilhar imagem e texto */
+  .hero2-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .image {
+    width: 100%;
+    max-width: 300px;
+    height: auto; /* Mantém proporção */
+    border-radius: 10px;
+  }
+
+  .text-content {
+    width: 100%;
+  }
+
+  .descricao {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .info {
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
+/* Para telas muito pequenas (ex: celulares pequenos) */
+@media (max-width: 480px) {
+  .container {
+    width: 90%;
+  }
+
+  .principal {
+    font-size: 20px;
+  }
+
+  .titulo-culto {
+    font-size: 20px;
+    align-items: baseline;
+  }
+
+  .descricao {
+    font-size: 18px;
+  }
+
+  .info {
+    font-size: 15px;
+  }
+}
