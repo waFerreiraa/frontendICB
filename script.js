@@ -32,7 +32,8 @@ document.querySelectorAll('header nav ul li').forEach(item => {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
-  fetch('http://localhost:3000/cultos/ultimo')
+  // ATUALIZADO: URL do backend no Railway para buscar o último culto
+  fetch('https://backendicb-production.up.railway.app/cultos/ultimo')
     .then(response => response.json())
     .then(data => {
       const { titulo, link, imagem_path } = data || {};
@@ -49,7 +50,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
       if (imagem_path) {
         const hero = document.querySelector('.hero');
-        hero.style.backgroundImage = `url('http://localhost:3000${imagem_path}')`;
+        // ATUALIZADO: URL do backend no Railway para a imagem
+        hero.style.backgroundImage = `url('https://backendicb-production.up.railway.app${imagem_path}')`;
       }
     })
     .catch(error => {

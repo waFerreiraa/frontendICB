@@ -33,13 +33,13 @@
     <h1>Agenda</h1>
 
     <section class="event-list">
-      <!-- Eventos serão inseridos aqui pelo JS -->
-    </section>
+      </section>
   </main>
 
   <script>
     window.addEventListener('DOMContentLoaded', () => {
-      fetch('http://localhost:3000/agenda')
+      // ATUALIZADO: URL do backend no Railway para buscar a agenda
+      fetch('https://backendicb-production.up.railway.app/agenda')
         .then(res => res.json())
         .then(events => {
           const container = document.querySelector('.event-list');
