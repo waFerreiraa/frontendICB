@@ -1,25 +1,30 @@
 const backendUrl = window.location.hostname.includes("localhost")
   ? "http://localhost:3000"
-  : "https://backendicb-production.up.railway.app"; // Já aponta para o Railway em produção
+  : "https://backendicb-production.up.railway.app";
 
-// Formulário de culto
+// Formulário de culto - ALTERADO TEMPORARIAMENTE PARA ENVIAR JSON
 document.getElementById("form-culto").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const formData = new FormData(e.target);
+  
+  // Pegando apenas o título para este teste
+  const titulo = document.getElementById("titulo-culto").value; 
 
   try {
     const res = await fetch(`${backendUrl}/cultos`, {
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json" // <-- ESSA É A MUDANÇA PRINCIPAL AQUI!
+      },
+      body: JSON.stringify({ titulo: titulo }), // <-- ENVIANDO COMO JSON
     });
 
     const json = await res.json();
 
     if (json.status) {
-      alert("Palavra publicada com sucesso!");
+      alert("Palavra publicada com sucesso para teste!"); // Mensagem de sucesso ajustada para teste
       e.target.reset();
     } else {
-      alert("Erro ao publicar palavra.");
+      alert("Erro ao publicar palavra para teste.");
     }
   } catch (err) {
     alert("Erro ao conectar com o servidor.");
@@ -27,7 +32,7 @@ document.getElementById("form-culto").addEventListener("submit", async (e) => {
   }
 });
 
-// Formulário de evento
+// Formulário de evento - Permanece como estava
 document.getElementById("evento-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = e.target;
@@ -61,7 +66,7 @@ document.getElementById("evento-form").addEventListener("submit", async (e) => {
   }
 });
 
-// Função para carregar eventos
+// Função para carregar eventos - Permanece como estava
 async function carregarEventos() {
   try {
     const res = await fetch(`${backendUrl}/agenda`);
