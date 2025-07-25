@@ -4,8 +4,8 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f5f7fa;
-  color: #222;
+  background: #ececec;
+  color: #00000057;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +17,7 @@ body {
 /* Título centralizado */
 h1 {
   text-align: center;
-  color: #004aad;
+  color: #706e6e;
   font-weight: 700;
   margin-bottom: 40px;
   font-size: 2.5rem;
