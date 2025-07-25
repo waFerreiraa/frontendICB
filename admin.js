@@ -2,29 +2,25 @@ const backendUrl = window.location.hostname.includes("localhost")
   ? "http://localhost:3000"
   : "https://backendicb-production.up.railway.app";
 
-// Formulário de culto - ALTERADO TEMPORARIAMENTE PARA ENVIAR JSON
+// Formulário de culto - REVERTIDO PARA ENVIAR FormData (com upload de imagem)
 document.getElementById("form-culto").addEventListener("submit", async (e) => {
   e.preventDefault();
-  
-  // Pegando apenas o título para este teste
-  const titulo = document.getElementById("titulo-culto").value; 
+  const formData = new FormData(e.target); // <-- VOLTOU AQUI!
 
   try {
     const res = await fetch(`${backendUrl}/cultos`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json" // <-- ESSA É A MUDANÇA PRINCIPAL AQUI!
-      },
-      body: JSON.stringify({ titulo: titulo }), // <-- ENVIANDO COMO JSON
+      body: formData, // <-- E AQUI!
+      // REMOVIDO: headers: { "Content-Type": "application/json" }
     });
 
     const json = await res.json();
 
     if (json.status) {
-      alert("Palavra publicada com sucesso para teste!"); // Mensagem de sucesso ajustada para teste
+      alert("Palavra publicada com sucesso!"); // Mensagem original
       e.target.reset();
     } else {
-      alert("Erro ao publicar palavra para teste.");
+      alert("Erro ao publicar palavra.");
     }
   } catch (err) {
     alert("Erro ao conectar com o servidor.");
