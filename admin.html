@@ -13,17 +13,20 @@
     <form id="form-culto" enctype="multipart/form-data">
       <h2>Atualizar Palavra do Culto</h2>
 
+      <input type="hidden" id="culto-id" name="id" value="" />
+      <input type="hidden" id="current-image-path" name="current_image_path" value="" />
+      <input type="hidden" id="current-public-id" name="current_public_id" value="" />
+
+
       <label for="titulo-culto">Título do Culto:</label>
       <input type="text" id="titulo-culto" name="titulo" required />
 
-      <label for="imagem-culto">Imagem do Pregador:</label>
-      <input type="file" id="imagem-culto" name="imagem" accept="image/*" required />
-
-      <button type="submit">Publicar Palavra</button>
+      <label for="imagem-culto">Imagem do Pregador (deixe em branco para manter a atual):</label>
+      <input type="file" id="imagem-culto" name="imagem" accept="image/*" /> <button type="submit" id="btn-submit-culto">Publicar/Atualizar Palavra</button>
     </form>
 
     <form id="evento-form">
-      <h2>Adicionar Evento na Agenda</h2>
+      <h2>Adicionar/Atualizar Evento na Agenda</h2>
 
       <label for="titulo-evento">Título:</label>
       <input type="text" id="titulo-evento" name="titulo" required />
@@ -37,7 +40,7 @@
       <label for="local-evento">Local:</label>
       <input type="text" id="local-evento" name="local" required />
 
-      <button type="submit">Cadastrar Evento</button>
+      <button type="submit" id="btn-cadastrar-evento">Cadastrar Evento</button>
     </form>
   </div>
 

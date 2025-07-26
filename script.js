@@ -32,8 +32,11 @@ document.querySelectorAll('header nav ul li').forEach(item => {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
-  // ATUALIZADO: URL do backend no Railway para buscar o último culto
-  fetch('https://backendicb-production.up.railway.app/cultos/ultimo')
+  const backendUrl = window.location.hostname.includes("localhost")
+    ? "http://localhost:3000"
+    : "https://backendicb-production.up.railway.app"; // Defina backendUrl aqui
+
+  fetch(`${backendUrl}/cultos/ultimo`)
     .then(response => response.json())
     .then(data => {
       const { titulo, link, imagem_path } = data || {};
@@ -50,11 +53,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
       if (imagem_path) {
         const hero = document.querySelector('.hero');
-        // ATUALIZADO: URL do backend no Railway para a imagem
-        hero.style.backgroundImage = `url('https://backendicb-production.up.railway.app${imagem_path}')`;
+        // Usando diretamente a URL completa do Cloudinary que vem do backend
+        hero.style.backgroundImage = `url('${imagem_path}')`;
+        // Para exibir a imagem no corpo, se precisar (já tinha um id="img-pregador")
+        const imgPregador = document.getElementById('img-pregador');
+        if (imgPregador) {
+          imgPregador.src = imagem_path;
+          imgPregador.style.display = 'block'; // Mostra a imagem
+        }
       }
     })
     .catch(error => {
       console.error('Erro ao carregar culto:', error);
+      document.getElementById('titulo-culto').textContent = 'Erro ao carregar culto.';
     });
 });
