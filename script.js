@@ -22,21 +22,18 @@ document.querySelectorAll('header nav ul li').forEach(item => {
     const link = item.querySelector('a');
     link.addEventListener('click', e => {
       e.preventDefault();
-      if (submenu.style.display === 'block') {
-        submenu.style.display = 'none';
-      } else {
-        submenu.style.display = 'block';
-      }
+      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
     });
   }
 });
 
 window.addEventListener('DOMContentLoaded', () => {
-  // ATUALIZADO: URL do backend no Railway para buscar o último culto
   fetch('https://backendicb-production.up.railway.app/cultos/ultimo')
     .then(response => response.json())
     .then(data => {
-      const { titulo, link, imagem_path } = data || {};
+      if (!data) return;
+
+      const { titulo, link, imagem_path } = data;
 
       if (titulo) {
         document.getElementById('titulo-culto').textContent = titulo;
@@ -49,9 +46,14 @@ window.addEventListener('DOMContentLoaded', () => {
       }
 
       if (imagem_path) {
+        // Define imagem no background
         const hero = document.querySelector('.hero');
-        // ATUALIZADO: URL do backend no Railway para a imagem
-        hero.style.backgroundImage = `url('https://backendicb-production.up.railway.app${imagem_path}')`;
+        hero.style.backgroundImage = `url('${imagem_path}')`;
+
+        // Mostra a imagem no <img id="img-pregador">
+        const img = document.getElementById('img-pregador');
+        img.src = imagem_path;
+        img.style.display = 'block';
       }
     })
     .catch(error => {

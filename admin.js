@@ -2,25 +2,36 @@ const backendUrl = window.location.hostname.includes("localhost")
   ? "http://localhost:3000"
   : "https://backendicb-production.up.railway.app";
 
-// Formulário de culto - REVERTIDO PARA ENVIAR FormData (com upload de imagem)
+// Formulário de culto (com imagem e título)
 document.getElementById("form-culto").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const formData = new FormData(e.target); // <-- VOLTOU AQUI!
+  const form = e.target;
+  const formData = new FormData();
+
+  const titulo = form.titulo.value.trim();
+  const imagem = form.imagem.files[0];
+
+  if (!titulo || !imagem) {
+    alert("Preencha o título e selecione uma imagem.");
+    return;
+  }
+
+  formData.append("titulo", titulo);
+  formData.append("imagem", imagem);
 
   try {
     const res = await fetch(`${backendUrl}/cultos`, {
       method: "POST",
-      body: formData, // <-- E AQUI!
-      // REMOVIDO: headers: { "Content-Type": "application/json" }
+      body: formData,
     });
 
     const json = await res.json();
 
     if (json.status) {
-      alert("Palavra publicada com sucesso!"); // Mensagem original
-      e.target.reset();
+      alert("Culto publicado com sucesso!");
+      form.reset();
     } else {
-      alert("Erro ao publicar palavra.");
+      alert(json.erro || "Erro ao publicar culto.");
     }
   } catch (err) {
     alert("Erro ao conectar com o servidor.");
@@ -28,7 +39,7 @@ document.getElementById("form-culto").addEventListener("submit", async (e) => {
   }
 });
 
-// Formulário de evento - Permanece como estava
+// Formulário de evento - permanece igual
 document.getElementById("evento-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = e.target;
@@ -62,7 +73,7 @@ document.getElementById("evento-form").addEventListener("submit", async (e) => {
   }
 });
 
-// Função para carregar eventos - Permanece como estava
+// Função para carregar eventos
 async function carregarEventos() {
   try {
     const res = await fetch(`${backendUrl}/agenda`);
