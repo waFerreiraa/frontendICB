@@ -22,17 +22,19 @@ document.querySelectorAll('header nav ul li').forEach(item => {
     const link = item.querySelector('a');
     link.addEventListener('click', e => {
       e.preventDefault();
-      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+      if (submenu.style.display === 'block') {
+        submenu.style.display = 'none';
+      } else {
+        submenu.style.display = 'block';
+      }
     });
   }
 });
 
 window.addEventListener('DOMContentLoaded', () => {
-  const backendUrl = window.location.hostname.includes("localhost")
-    ? "http://localhost:3000"
-    : "https://backendicb-production.up.railway.app";
+  const defaultImage = 'img/Pastor Marcelo.png'; // Imagem padrão
 
-  fetch(`${backendUrl}/cultos/ultimo`)
+  fetch('https://backendicb-production.up.railway.app/cultos/ultimo')
     .then(response => response.json())
     .then(data => {
       const { titulo, link, imagem_path } = data || {};
@@ -45,18 +47,23 @@ window.addEventListener('DOMContentLoaded', () => {
         const btn = document.getElementById('btn-acessar');
         btn.href = link;
         btn.style.display = 'inline-block';
+      } else {
+        document.getElementById('btn-acessar').style.display = 'none';
       }
 
+      const hero = document.querySelector('.hero');
       if (imagem_path) {
-        const imgPregador = document.getElementById('img-pregador');
-        imgPregador.src = imagem_path; // aqui já é a URL completa do Cloudinary
-        imgPregador.style.display = 'block';
+        hero.style.backgroundImage = `url('${imagem_path}')`;
       } else {
-        // Se não tiver imagem, esconde o elemento
-        document.getElementById('img-pregador').style.display = 'none';
+        hero.style.backgroundImage = `url('${defaultImage}')`;
       }
     })
     .catch(error => {
       console.error('Erro ao carregar culto:', error);
+      // Mesmo se erro, mostrar imagem padrão
+      const hero = document.querySelector('.hero');
+      hero.style.backgroundImage = `url('img/Pastor Marcelo.png')`;
+      document.getElementById('titulo-culto').textContent = "Falha ao carregar culto";
+      document.getElementById('btn-acessar').style.display = 'none';
     });
 });
