@@ -2,42 +2,47 @@ const backendUrl = window.location.hostname.includes("localhost")
   ? "http://localhost:3000"
   : "https://backendicb-production.up.railway.app";
 
-// Formulário de culto (com imagem e título)
 document.getElementById("form-culto").addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = e.target;
-  const formData = new FormData();
 
-  const titulo = form.titulo.value.trim();
-  const imagem = form.imagem.files[0];
+  // Usar FormData para enviar arquivo + campos
+  const formData = new FormData(form);
 
-  if (!titulo || !imagem) {
-    alert("Preencha o título e selecione uma imagem.");
+  // Validar que o título está preenchido
+  if (!formData.get("titulo")?.trim()) {
+    alert("Digite um título.");
     return;
   }
 
-  formData.append("titulo", titulo);
-  formData.append("imagem", imagem);
+  // Validar que imagem foi selecionada
+  if (!formData.get("imagem") || formData.get("imagem").size === 0) {
+    alert("Selecione uma imagem.");
+    return;
+  }
 
   try {
     const res = await fetch(`${backendUrl}/cultos`, {
       method: "POST",
-      body: formData,
+      body: formData, // enviar formData sem headers Content-Type
     });
 
     const json = await res.json();
 
     if (json.status) {
-      alert("Culto publicado com sucesso!");
+      alert("Palavra publicada com sucesso!");
       form.reset();
     } else {
-      alert(json.erro || "Erro ao publicar culto.");
+      alert(json.erro || "Erro ao publicar palavra.");
     }
   } catch (err) {
     alert("Erro ao conectar com o servidor.");
     console.error(err);
   }
 });
+
+// O resto do admin.js que você já tem para agenda pode ficar igual
+
 
 // Formulário de evento - permanece igual
 document.getElementById("evento-form").addEventListener("submit", async (e) => {

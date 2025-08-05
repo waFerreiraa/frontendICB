@@ -28,12 +28,14 @@ document.querySelectorAll('header nav ul li').forEach(item => {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
-  fetch('https://backendicb-production.up.railway.app/cultos/ultimo')
+  const backendUrl = window.location.hostname.includes("localhost")
+    ? "http://localhost:3000"
+    : "https://backendicb-production.up.railway.app";
+
+  fetch(`${backendUrl}/cultos/ultimo`)
     .then(response => response.json())
     .then(data => {
-      if (!data) return;
-
-      const { titulo, link, imagem_path } = data;
+      const { titulo, link, imagem_path } = data || {};
 
       if (titulo) {
         document.getElementById('titulo-culto').textContent = titulo;
@@ -46,14 +48,12 @@ window.addEventListener('DOMContentLoaded', () => {
       }
 
       if (imagem_path) {
-        // Define imagem no background
-        const hero = document.querySelector('.hero');
-        hero.style.backgroundImage = `url('${imagem_path}')`;
-
-        // Mostra a imagem no <img id="img-pregador">
-        const img = document.getElementById('img-pregador');
-        img.src = imagem_path;
-        img.style.display = 'block';
+        const imgPregador = document.getElementById('img-pregador');
+        imgPregador.src = imagem_path; // aqui já é a URL completa do Cloudinary
+        imgPregador.style.display = 'block';
+      } else {
+        // Se não tiver imagem, esconde o elemento
+        document.getElementById('img-pregador').style.display = 'none';
       }
     })
     .catch(error => {
