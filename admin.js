@@ -1,6 +1,6 @@
 const backendUrl = window.location.hostname.includes("localhost")
   ? "http://localhost:3000"
-  : "https://backendicb-production.up.railway.app";
+  : "https://backendicb.onrender.com";
 
 document.getElementById("form-culto").addEventListener("submit", async (e) => {
   e.preventDefault();

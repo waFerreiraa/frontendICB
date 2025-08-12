@@ -34,7 +34,7 @@ document.querySelectorAll('header nav ul li').forEach(item => {
 window.addEventListener('DOMContentLoaded', () => {
   const defaultImage = 'img/Pastor Marcelo.png'; // Imagem padrão
 
-  fetch('https://backendicb-production.up.railway.app/cultos/ultimo')
+  fetch('https://backendicb.onrender.com/cultos/ultimo')
     .then(response => response.json())
     .then(data => {
       const { titulo, link, imagem_path } = data || {};

@@ -39,7 +39,7 @@
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       // ATUALIZADO: URL do backend no Railway para buscar a agenda
-      fetch('https://backendicb-production.up.railway.app/agenda')
+      fetch('https://backendicb.onrender.com/agenda')
         .then(res => res.json())
         .then(events => {
           const container = document.querySelector('.event-list');
